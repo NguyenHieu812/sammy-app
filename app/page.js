@@ -1,15 +1,22 @@
 'use client'
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Movie from './Movie';
+import ArrowUpIcon from '@/icon/ArrowUpIcon';
 
 export default function Home() {
   const test = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
-  
   const [films, setFilms] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchTerm, setSearchTerm] = useState("")
+  const [showButton, setShowButton] = useState(false)
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
   useEffect(() => {
-
+    const handleScrolToTopButtonVisiblity = () => {
+      window.pageYOffset > 300 ? setShowButton(true) : setShowButton(false)
+    }
+    window.addEventListener('scroll', handleScrolToTopButtonVisiblity)
     fetch(test)
       .then(res => res.json())
       .then(async (data) => {
@@ -24,6 +31,9 @@ export default function Home() {
         setIsLoaded(true);
         console.log("Co loi" + error);
       })
+    return () => {
+      window.removeEventListener('scroll', handleScrolToTopButtonVisiblity)
+    }
   }, [])
 
   if (!isLoaded) {
@@ -54,16 +64,24 @@ export default function Home() {
                 return film;
               }
             }).map(film => (
-              <Movie 
-              key={film.id}
-              id={film.id}
-              title={film.title}
-              poster_path={film.poster_path}
-              release_date={film.release_date}
+              <Movie
+                key={film.id}
+                id={film.id}
+                title={film.title}
+                poster_path={film.poster_path}
+                release_date={film.release_date}
               />
             ))}
-
           </div>
+        </div>
+        <div className=''>
+          {showButton && (
+            <div className={`scrollToTop`}>
+              <button className='fixed bottom-10 right-1 laptop:right-5 desktop:right-2 z-10 cursor-pointer mobile:p-3 laptop:p-3 desktop:p-3 rounded-full bg-purple-700' onClick={handleScrollToTop}>
+                <ArrowUpIcon />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     )
