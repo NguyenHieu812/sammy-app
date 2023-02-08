@@ -37,7 +37,7 @@ export default function Home() {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      <h1 className=''>Loading..</h1>
+      <h1 className=''>Loading...</h1>
     </div>
   } else if (isLoaded) {
     return (
@@ -45,7 +45,7 @@ export default function Home() {
         <div className='w-screen h-20 bg-sky-700 text-center fixed'>
           <input className='border-none outline-none w-80 h-10 pl-2 rounded-xl mt-4' placeholder='Search...' type='text' onChange={(event) => { setSearchTerm(event.target.value) }} />
         </div>
-        <div className='pt-20 mx-10'>
+        <div className='pt-20 px-10 mobile:px-14'>
           <div className='grid grid-cols-fluid gap-16'>
             {films.results.filter((film) => {
               if (searchTerm == "") {

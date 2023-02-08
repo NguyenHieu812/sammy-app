@@ -9,7 +9,7 @@ export default async function MovieDetail({ params }) {
   const res = await data.json()
 
   return (
-    <div className="m-20">
+    <div className="m-20 mobile:m-10">
       <div className="">
         <h2 className="text-4xl">{res.title}</h2>
         <h1 className="text-lg ">{res.release_date}</h1>
@@ -19,15 +19,15 @@ export default async function MovieDetail({ params }) {
         </h2>
       </div>
       <Image
-        className="my-12 w-1/2"
+        className="my-12 w-1/2 mobile:w-5/6"
         src={imagePath + res.backdrop_path}
         alt={res.title}
         width={1000}
         height={1000}
         priority
       />
-      <div className="my-12 w-1/2">
-        <p className="text-lg">{res.overview}</p>
+      <div className="my-12 w-1/2 mobile:w-5/6">
+        <p className="text-lg mobile:text-base">{res.overview}</p>
       </div>
     </div>
   )
