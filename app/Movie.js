@@ -5,8 +5,8 @@ export default function Movie({ title, release_date, poster_path, id }) {
   const img_url = 'https://image.tmdb.org/t/p/w1280';
   return (
     <div className="">
-      <h1>{title}</h1>
-      <h2>{release_date}</h2>
+      <h1 className="h-14 text-xl">{title}</h1>
+      <h2 className="pb-4">{release_date}</h2>
       <Link href={`/${id}`}>
         <Image
           className=""

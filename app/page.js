@@ -52,10 +52,14 @@ export default function Home() {
   } else if (isLoaded) {
     return (
       <div className='w-full h-full'>
-        <div className='w-screen h-20 bg-sky-700 text-center fixed'>
-          <input className='border-none outline-none w-80 h-10 pl-2 rounded-xl mt-4' placeholder='Search...' type='text' onChange={(event) => { setSearchTerm(event.target.value) }} />
+        <div className='flex justify-around items-center w-screen h-20 bg-gray-800 text-center fixed top-0 overflow-hidden'>
+          <div class="flex justify-center -space-x-9 z-10">
+            <div class="mix-blend-multiply bg-blue-400 w-16 h-16 rounded-full py-4"><p className='text-white'>MO</p></div>
+            <div class="mix-blend-multiply bg-pink-400 w-16 h-16 rounded-full py-4"><p className='text-white'>VIE</p></div>
+          </div>
+          <input className='focus:outline-none focus:ring focus:border-blue-500 w-80 mobile:w-40 laptop:w-80 h-10 pl-2 rounded-xl' placeholder='Search...' type='text' onChange={(event) => { setSearchTerm(event.target.value) }} />
         </div>
-        <div className='pt-20 px-10 mobile:px-14'>
+        <div className='pt-24 px-10 mobile:px-14'>
           <div className='grid grid-cols-fluid gap-16'>
             {films.results.filter((film) => {
               if (searchTerm == "") {
@@ -77,7 +81,7 @@ export default function Home() {
         <div className=''>
           {showButton && (
             <div className={`scrollToTop`}>
-              <button className='fixed bottom-10 right-1 laptop:right-5 desktop:right-2 z-10 cursor-pointer mobile:p-3 laptop:p-3 desktop:p-3 rounded-full bg-purple-700' onClick={handleScrollToTop}>
+              <button className='fixed bottom-10 right-1 laptop:right-2 desktop:right-2 z-10 cursor-pointer mobile:p-3 laptop:p-3 desktop:p-3 rounded-full bg-purple-700' onClick={handleScrollToTop}>
                 <ArrowUpIcon />
               </button>
             </div>
