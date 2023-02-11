@@ -47,7 +47,7 @@ export default function Home() {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      <h1 className=''>Loading...</h1>
+      <h1 className='text-2xl'>Loading...</h1>
     </div>
   } else if (isLoaded) {
     return (
